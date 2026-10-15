@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Capycours — Français et français langue étrangère</title>
+
+    <style>
+
+        /* =====================================================
+           VARIABLES DE COULEURS
+        ===================================================== */
+
+        :root {
+            --bleu-fonce: #0b2d63;
+            --bleu: #1769c2;
+            --bleu-clair: #eaf3fc;
+
+            --rouge: #d92828;
+
+            --blanc: #ffffff;
+            --gris-clair: #f5f7fa;
+            --gris: #697586;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: var(--bleu-fonce);
+
+            background: var(--blanc);
+        }
+
+
+        /* =====================================================
+           BARRE DE NAVIGATION
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 90px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 3px 20px rgba(0, 0, 0, 0.06);
+        }
+
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+
+        nav a {
+
+            position: relative;
+
+            text-decoration: none;
+
+            color: var(--bleu-fonce);
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            padding: 10px 0;
+
+            transition: color 0.25s ease;
+        }
+
+
+        /* Petit trait bleu sous le lien */
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 3px;
+
+            background: var(--bleu);
+
+            border-radius: 5px;
+
+            transition: width 0.25s ease;
+        }
+
+
+        nav a:hover {
+
+            color: var(--bleu);
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+        }
+
+
+        /* Bouton contact */
+
+        nav .contact {
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding: 15px 25px;
+
+            border-radius: 7px;
+
+            transition: all 0.25s ease;
+        }
+
+
+        nav .contact::after {
+
+            display: none;
+        }
+
+
+        nav .contact:hover {
+
+            background: var(--bleu-fonce);
+
+            color: white;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           SECTION PRINCIPALE
+        ===================================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            padding:
+                140px
+                8%
+                80px;
+
+            display: grid;
+
+            grid-template-columns:
+                48%
+                52%;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: var(--blanc);
+        }
+
+
+        /* Grande forme géométrique */
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+            height: 650px;
+
+            right: -300px;
+            top: 120px;
+
+            background: var(--bleu-clair);
+
+            transform: rotate(45deg);
+
+            z-index: 0;
+        }
+
+
+        /* Petite touche rouge */
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: 8%;
+            bottom: -90px;
+
+            background: rgba(217, 40, 40, 0.08);
+
+            border-radius: 50%;
+
+            z-index: 0;
+        }
+
+
+        /* =====================================================
+           TEXTE DE GAUCHE
+        ===================================================== */
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 650px;
+        }
+
+
+        .hero-content h1 {
+
+            font-size:
+                clamp(55px, 6vw, 90px);
+
+            line-height: 0.95;
+
+            letter-spacing: -4px;
+
+            font-weight: 900;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* CAPY */
+
+        .hero-content h1 .capy {
+
+            color: var(--bleu-fonce);
+        }
+
+
+        /* COURS */
+
+        .hero-content h1 .cours {
+
+            color: var(--bleu);
+        }
+
+
+        /* Petite barre rouge décorative */
+
+        .red-line {
+
+            width: 75px;
+
+            height: 5px;
+
+            background: var(--rouge);
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           SOUS-TITRE
+        ===================================================== */
+
+        .subtitle {
+
+            font-size: 27px;
+
+            line-height: 1.35;
+
+            font-weight: 700;
+
+            color: var(--bleu-fonce);
+
+            margin-bottom: 25px;
+        }
+
+
+        .subtitle span {
+
+            color: var(--bleu);
+        }
+
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .description {
+
+            max-width: 600px;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color: var(--gris);
+	
+	text-align: justify;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* =====================================================
+           BOUTON
+        ===================================================== */
+
+        .main-button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding: 18px 30px;
+
+            border-radius: 7px;
+
+            font-weight: 800;
+
+            font-size: 15px;
+
+            box-shadow:
+                0 10px 25px rgba(23, 105, 194, 0.20);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .main-button:hover {
+
+            background: var(--bleu-fonce);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px rgba(11, 45, 99, 0.25);
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .hero-logo {
+
+            position: relative;
+
+            z-index: 2;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .hero-logo img {
+
+            width: min(520px, 90%);
+
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 25px 30px
+                    rgba(11, 45, 99, 0.12)
+                );
+
+            transition: transform 0.3s ease;
+        }
+
+
+        .hero-logo img:hover {
+
+            transform: scale(1.02);
+        }
+
+
+        /* =====================================================
+           SECTIONS FUTURES
+        ===================================================== */
+
+        .section {
+
+            min-height: 500px;
+
+            padding: 100px 8%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background: var(--gris-clair);
+        }
+
+
+        .section:nth-child(even) {
+
+            background: white;
+        }
+
+
+        .section h2 {
+
+            font-size: 48px;
+
+            margin-bottom: 20px;
+
+            color: var(--bleu-fonce);
+        }
+
+
+        .section p {
+
+            max-width: 700px;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: var(--gris);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE TABLETTE / MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            header {
+
+                height: 75px;
+            }
+
+
+            nav {
+
+                gap: 20px;
+            }
+
+
+            nav a {
+
+                font-size: 14px;
+            }
+
+
+            nav .contact {
+
+                padding: 12px 15px;
+            }
+
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                padding-top: 120px;
+            }
+
+
+            .hero-content {
+
+                margin: auto;
+            }
+
+
+            .red-line {
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .description {
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
+            .hero-logo {
+
+                margin-top: 60px;
+            }
+
+
+            .hero-logo img {
+
+                width: min(400px, 85%);
+            }
+        }
+
+
+        /* =====================================================
+           TRÈS PETITS ÉCRANS
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: auto;
+
+                min-height: 70px;
+
+                padding: 10px 15px;
+            }
+
+
+            nav {
+
+                gap: 13px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            nav .contact {
+
+                padding: 9px 12px;
+            }
+
+
+            .hero {
+
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 55px;
+
+                letter-spacing: -2px;
+            }
+
+
+            .subtitle {
+
+                font-size: 21px;
+            }
+
+
+            .description {
+
+                font-size: 16px;
+            }
+
+
+            .hero-logo img {
+
+                width: 90%;
+            }
+
+
+            .section h2 {
+
+                font-size: 38px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU SUPÉRIEUR FIXE
+    ====================================================== -->
+
+    <header>
+
+        <nav>
+
+            <a href="index.html">
+                Accueil
+            </a>
+
+            
+
+            <a href="cours.html">
+                Cours
+            </a>
+
+            <a href="tarifs.html">
+                Tarifs
+            </a>
+	
+		<a href="Qui-suis-je.html">
+                Qui suis-je ?
+            </a>
+
+            <a href="contact.html" class="contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE D'ACCUEIL
+    ====================================================== -->
+
+    <main>
+
+        <section class="hero" id="accueil">
+
+
+            <!-- COLONNE GAUCHE -->
+
+            <div class="hero-content">
+
+
+                <div class="red-line"></div>
+
+
+                <h1>
+
+                    <span class="capy">
+                        CAPYCOURS
+                    </span>
+
+                </h1>
+
+
+                <div class="subtitle">
+
+                    Apprenez, Progressez et Maîtrisez
+                    <span>
+                        le Francais
+                    </span>
+
+                </div>
+
+
+                <p class="description">
+
+                    CAPYCOURS vous propose des cours de français de soutien scolaire, de français langue étrangère et de français sur objectif spécifique pour répondre à tous vos besoins. <br> Grâce à de nombreux outils pédagogiques et un traitement individualisé des difficultés, CAPYCOURS vous offre un accompagnement personnalisé qui vous permet de prendre confiance et de vous exprimer sereinement, que cela soit à l’oral ou à l’écrit.
+
+                </p>
+
+
+                <a href="cours.html" class="main-button">
+
+                    DÉCOUVRIR LES COURS
+
+                </a>
+
+            </div>
+
+
+
+            <!-- COLONNE DROITE : VOTRE LOGO -->
+
+            <div class="hero-logo">
+
+                <img
+                    src="images/logo-capycours.png"
+                    alt="Logo Capycours"
+                >
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

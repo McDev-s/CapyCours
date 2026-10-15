@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact — Capycours</title>
+
+
+    <style>
+
+        /* =====================================================
+           COULEURS
+        ===================================================== */
+
+        :root {
+
+            --bleu-fonce: #0b2d63;
+            --bleu: #1769c2;
+            --bleu-clair: #eaf3fc;
+
+            --rouge: #d92828;
+
+            --blanc: #ffffff;
+
+            --gris-clair: #f5f7fa;
+            --gris: #697586;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--bleu-fonce);
+
+            background: var(--blanc);
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 90px;
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 3px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+
+        nav a {
+
+            position: relative;
+
+            text-decoration: none;
+
+            color: var(--bleu-fonce);
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            padding: 10px 0;
+
+            transition:
+                color 0.25s ease;
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 3px;
+
+            background: var(--bleu);
+
+            border-radius: 10px;
+
+            transition:
+                width 0.25s ease;
+        }
+
+
+        nav a:hover {
+
+            color: var(--bleu);
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+        }
+
+
+        /* Page actuelle */
+
+        nav .active {
+
+            color: var(--bleu);
+        }
+
+
+        nav .active::after {
+
+            width: 100%;
+        }
+
+
+        /* Bouton contact */
+
+        nav .contact {
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding: 15px 25px;
+
+            border-radius: 7px;
+        }
+
+
+        nav .contact::after {
+
+            display: none;
+        }
+
+
+        nav .contact:hover {
+
+            background: var(--bleu-fonce);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           PAGE CONTACT
+        ===================================================== */
+
+        .contact-page {
+
+            min-height: 100vh;
+
+            padding:
+                145px 7% 80px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #ffffff 65%,
+                    var(--bleu-clair) 100%
+                );
+        }
+
+
+        /* =====================================================
+           TITRE
+        ===================================================== */
+
+        .contact-header {
+
+            text-align: center;
+
+            margin-bottom: 65px;
+        }
+
+
+        .red-line {
+
+            width: 70px;
+
+            height: 5px;
+
+            background: var(--rouge);
+
+            border-radius: 10px;
+
+            margin:
+                0 auto 25px;
+        }
+
+
+        .contact-header h1 {
+
+            font-size:
+                clamp(45px, 6vw, 75px);
+
+            font-weight: 900;
+
+            letter-spacing: -3px;
+
+            color: var(--bleu-fonce);
+
+            margin-bottom: 15px;
+        }
+
+
+        .contact-header h1 span {
+
+            color: var(--bleu);
+        }
+
+
+        .contact-header p {
+
+            color: var(--gris);
+
+            font-size: 18px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           CONTENU PRINCIPAL
+        ===================================================== */
+
+        .contact-content {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                0.8fr 1.2fr;
+
+            gap: 60px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           INFORMATIONS
+        ===================================================== */
+
+        .contact-info {
+
+            background: white;
+
+            padding:
+                45px 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(11, 45, 99, 0.08);
+
+            border-top:
+                5px solid var(--bleu);
+        }
+
+
+        .contact-info h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .info-item {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            padding:
+                20px 0;
+
+            border-bottom:
+                1px solid #e5e9ef;
+        }
+
+
+        .info-item:last-child {
+
+            border-bottom: none;
+        }
+
+
+        /* =====================================================
+           ICÔNES
+        ===================================================== */
+
+        .info-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--bleu-clair);
+
+            color: var(--bleu);
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .info-text h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 6px;
+
+            color: var(--bleu-fonce);
+        }
+
+
+        .info-text p {
+
+            color: var(--gris);
+
+            font-size: 16px;
+
+            line-height: 1.5;
+        }
+
+
+        .info-text a {
+
+            color: var(--bleu);
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        .info-text a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           IMAGES
+        ===================================================== */
+
+        .contact-images {
+
+            display: grid;
+
+            grid-template-columns: 1fr;
+
+            gap: 30px;
+        }
+
+
+        .image-card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px
+                rgba(11, 45, 99, 0.08);
+        }
+
+
+        .image-card h2 {
+
+            font-size: 21px;
+
+            padding:
+                22px 25px 18px;
+
+            color: var(--bleu-fonce);
+        }
+
+
+        .image-card img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 280px;
+
+            object-fit: cover;
+        }
+
+
+        /* =====================================================
+           TEXTE SOUS LES IMAGES
+        ===================================================== */
+
+        .image-description {
+
+            padding:
+                15px 25px 22px;
+
+            color: var(--gris);
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .contact-content {
+
+                grid-template-columns: 1fr;
+
+                max-width: 650px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: auto;
+
+                min-height: 70px;
+
+                padding:
+                    10px 15px;
+            }
+
+
+            nav {
+
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            nav .contact {
+
+                padding:
+                    9px 12px;
+            }
+
+
+            .contact-page {
+
+                padding:
+                    130px 6% 60px;
+            }
+
+
+            .contact-header {
+
+                margin-bottom: 45px;
+            }
+
+
+            .contact-info {
+
+                padding:
+                    35px 25px;
+            }
+
+
+            .image-card img {
+
+                height: 220px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU
+    ====================================================== -->
+
+    <header>
+
+        <nav>
+
+            <a href="index.html">
+                Accueil
+            </a>
+
+           
+
+            <a href="cours.html">
+                Cours
+            </a>
+
+            <a href="tarifs.html">
+                Tarifs
+            </a>
+
+		 <a href="qui-suis-je.html">
+                Qui suis-je ?
+            </a>
+
+            <a href="contact.html"
+               class="active">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PAGE CONTACT
+    ====================================================== -->
+
+    <main class="contact-page">
+
+
+        <!-- =================================================
+             TITRE
+        ================================================== -->
+
+        <div class="contact-header">
+
+            <div class="red-line"></div>
+
+            <h1>
+                <span>CAPY</span>COURS
+            </h1>
+
+            <p>
+                Pour toute question ou demande d'informations,
+                n'hésitez pas à me contacter.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTENU
+        ================================================== -->
+
+        <div class="contact-content">
+
+
+            <!-- =============================================
+                 INFORMATIONS
+            ============================================== -->
+
+            <section class="contact-info">
+
+                <h2>
+                    Mes coordonnées
+                </h2>
+
+
+                <!-- Nom -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        👤
+                    </div>
+
+                    <div class="info-text">
+
+                        <h3>
+                            Nom
+                        </h3>
+
+                        <p>
+                            Elisa SERVOZ-COURT
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Téléphone -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        ☎
+                    </div>
+
+                    <div class="info-text">
+
+                        <h3>
+                            Téléphone
+                        </h3>
+
+                        <p>
+
+                            <a href="tel:+33123456789">
+                                06.21.45.33.13
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- E-mail -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        @
+                    </div>
+
+                    <div class="info-text">
+
+                        <h3>
+                            E-mail
+                        </h3>
+
+                        <p>
+
+                            <a href="mailto:e-mail@gmail.com">
+                                e.servozcourt@gmail.com
+                            </a>
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Adresse -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📍
+                    </div>
+
+                    <div class="info-text">
+
+                        <h3>
+                            Adresse
+                        </h3>
+
+                        <p>
+                            74500 Evian-les-Bains
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =============================================
+                 IMAGES
+            ============================================== -->
+
+            <section class="contact-images">
+
+
+                <!-- Photo du lieu -->
+
+                <div class="image-card">
+
+                    <h2>
+                        Localisation
+                    </h2>
+
+                    <img
+                        src="images/evian.png"
+                        alt="Photo du lieu de Capycours">
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

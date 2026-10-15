@@ -1,0 +1,970 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cours — Capycours</title>
+
+
+    <style>
+
+        /* =====================================================
+           COULEURS
+        ===================================================== */
+
+        :root {
+
+            --bleu-fonce: #0b2d63;
+            --bleu: #1769c2;
+            --bleu-clair: #eaf3fc;
+
+            --rouge: #d92828;
+
+            --blanc: #ffffff;
+
+            --gris-clair: #f5f7fa;
+            --gris: #697586;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--bleu-fonce);
+
+            background: var(--blanc);
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 90px;
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 3px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+
+        nav a {
+
+            position: relative;
+
+            text-decoration: none;
+
+            color: var(--bleu-fonce);
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            padding: 10px 0;
+
+            transition:
+                color 0.25s ease;
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 3px;
+
+            background: var(--bleu);
+
+            border-radius: 10px;
+
+            transition:
+                width 0.25s ease;
+        }
+
+
+        nav a:hover {
+
+            color: var(--bleu);
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+        }
+
+
+        /* Page actuelle */
+
+        nav .active {
+
+            color: var(--bleu);
+        }
+
+
+        nav .active::after {
+
+            width: 100%;
+        }
+
+
+        /* Contact */
+
+        nav .contact {
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding: 15px 25px;
+
+            border-radius: 7px;
+        }
+
+
+        nav .contact::after {
+
+            display: none;
+        }
+
+
+        nav .contact:hover {
+
+            background: var(--bleu-fonce);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           EN-TÊTE DE PAGE
+        ===================================================== */
+
+        .page-header {
+
+            padding-top: 150px;
+
+            padding-bottom: 65px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #ffffff 70%,
+                    var(--bleu-clair) 100%
+                );
+        }
+
+
+        .page-header::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background:
+                rgba(217, 40, 40, 0.06);
+
+            border-radius: 50%;
+
+            right: -80px;
+            top: 100px;
+        }
+
+
+        .red-line {
+
+            width: 70px;
+
+            height: 5px;
+
+            background: var(--rouge);
+
+            border-radius: 10px;
+
+            margin:
+                0 auto 25px;
+        }
+
+
+        .page-header h1 {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-size:
+                clamp(45px, 6vw, 75px);
+
+            font-weight: 900;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .page-header h1 span {
+
+            color: var(--bleu);
+        }
+
+
+        .page-header p {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 750px;
+
+            margin: auto;
+
+            padding: 0 20px;
+
+            font-size: 19px;
+
+            line-height: 1.6;
+
+            color: var(--gris);
+        }
+
+
+        /* =====================================================
+           SECTION COURS
+        ===================================================== */
+
+        .courses {
+
+            padding:
+                80px 7% 100px;
+
+            background: var(--gris-clair);
+        }
+
+
+        .courses-intro {
+
+            text-align: center;
+
+            max-width: 750px;
+
+            margin:
+                0 auto 60px;
+        }
+
+
+        .courses-intro h2 {
+
+            font-size: 42px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .courses-intro h2 span {
+
+            color: var(--bleu);
+        }
+
+
+        .courses-intro p {
+
+            color: var(--gris);
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+		text-align: justify;
+        }
+
+
+        /* =====================================================
+           GRILLE DES COURS
+        ===================================================== */
+
+        .course-grid {
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
+
+            align-items: stretch;
+        }
+
+
+        /* =====================================================
+           CARTE
+        ===================================================== */
+
+        .course-card {
+
+            position: relative;
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 40px 32px 35px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(11, 45, 99, 0.07);
+
+            border-top:
+                5px solid var(--bleu);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .course-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 20px 45px
+                rgba(11, 45, 99, 0.12);
+        }
+
+
+        /* =====================================================
+           LOGO EN HAUT À DROITE
+        ===================================================== */
+
+        .course-logo {
+
+            position: absolute;
+
+            top: 12px;
+            right: 12px;
+
+            width: 130px;
+            height: 130px;
+
+            object-fit: contain;
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        /* Petite décoration rouge */
+
+        .course-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: var(--rouge);
+
+            top: 30px;
+            right: 30px;
+        }
+
+
+        /* =====================================================
+           NUMÉRO
+        ===================================================== */
+
+        .course-number {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--bleu-clair);
+
+            color: var(--bleu);
+
+            font-size: 20px;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           TITRE DES CARTES
+        ===================================================== */
+
+        .course-card h3 {
+
+            font-size: 25px;
+
+            line-height: 1.2;
+
+            margin-bottom: 28px;
+
+            padding-right: 20px;
+        }
+
+
+        /* =====================================================
+           CATÉGORIES
+        ===================================================== */
+
+        .course-item {
+
+            padding: 20px 0;
+
+            border-top:
+                1px solid #e5e9ef;
+        }
+
+
+        .course-item:first-of-type {
+
+            border-top: none;
+
+            padding-top: 0;
+        }
+
+
+        .course-item h4 {
+
+            font-size: 17px;
+
+            line-height: 1.4;
+
+            margin-bottom: 9px;
+
+            color: var(--bleu-fonce);
+        }
+
+
+        .course-item p {
+
+            color: var(--gris);
+
+            font-size: 15px;
+
+            line-height: 1.65;
+		
+		text-align: justify;
+        }
+
+
+        /* Petite puce bleue */
+
+        .course-item h4::before {
+
+            content: "";
+
+            display: inline-block;
+
+            width: 7px;
+            height: 7px;
+
+            background: var(--bleu);
+
+            border-radius: 50%;
+
+            margin-right: 9px;
+
+            vertical-align: middle;
+        }
+
+
+        /* =====================================================
+           SECTION FINALE
+        ===================================================== */
+
+        .course-cta {
+
+            padding:
+                80px 8%;
+
+            text-align: center;
+
+            background: var(--bleu-fonce);
+
+            color: white;
+        }
+
+
+        .course-cta h2 {
+
+            font-size:
+                clamp(32px, 5vw, 48px);
+
+            margin-bottom: 20px;
+        }
+
+
+        .course-cta p {
+
+            max-width: 700px;
+
+            margin:
+                0 auto 30px;
+
+            color: #dce8f7;
+
+            line-height: 1.7;
+
+            font-size: 17px;
+        }
+
+
+        .cta-button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: white;
+
+            color: var(--bleu-fonce);
+
+            padding: 16px 28px;
+
+            border-radius: 7px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .cta-button:hover {
+
+            background: var(--rouge);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .course-grid {
+
+                grid-template-columns: 1fr;
+
+                max-width: 650px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: auto;
+
+                min-height: 70px;
+
+                padding:
+                    10px 15px;
+            }
+
+
+            nav {
+
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            nav .contact {
+
+                padding:
+                    9px 12px;
+            }
+
+
+            .page-header {
+
+                padding-top: 130px;
+            }
+
+
+            .courses {
+
+                padding:
+                    60px 6% 80px;
+            }
+
+
+            .course-card {
+
+                padding:
+                    35px 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU
+    ====================================================== -->
+
+    <header>
+
+        <nav>
+
+            <a href="index.html">
+                Accueil
+            </a>
+
+            
+
+            <a href="cours.html"
+               class="active">
+                Cours
+            </a>
+
+            <a href="tarifs.html">
+                Tarifs
+            </a>
+
+
+		<a href="qui-suis-je.html">
+                Qui suis-je ?
+            </a>
+
+            <a href="contact.html"
+               class="contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         TITRE DE LA PAGE
+    ====================================================== -->
+
+    <section class="page-header">
+
+        <div class="red-line"></div>
+
+        <h1>
+            Les <span>cours</span>
+        </h1>
+
+        
+
+    </section>
+
+
+
+    <!-- =====================================================
+         COURS
+    ====================================================== -->
+
+    <section class="courses">
+
+
+        <div class="courses-intro">
+
+            <h2>
+                Les
+                <span>formations proposées</span>
+            </h2>
+
+            
+
+        </div>
+
+
+
+        <div class="course-grid">
+
+
+            <!-- =================================================
+                 CARTE 1
+            ================================================== -->
+
+            <article class="course-card">
+
+                
+                <div class="course-number">
+                    01
+                </div>
+
+                <h3>
+                    Français<br>
+                    Soutien scolaire
+                </h3>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Soutien scolaire
+                    </h4>
+
+                    <p>
+                        Accompagnement en français pour les
+                        élèves des niveaux primaire et collège.
+                    </p>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CARTE 2
+            ================================================== -->
+
+            <article class="course-card">
+
+              
+
+                <div class="course-number">
+                    02
+                </div>
+
+                <h3>
+                    Français <br> Langue Étrangère
+                </h3>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Apprendre le français
+                    </h4>
+
+                    <p>
+                        Cours adaptés aux niveaux débutant,
+                        intermédiaire et avancé.
+                    </p>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Améliorer sa prononciation
+                    </h4>
+
+                    <p>
+                        Cours exclusivement de phonétique pour faire face aux difficultés de se faire comprendre
+                    </p>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Apprendre le français et la lecture-écriture
+                    </h4>
+
+                    <p>
+                      Cours adaptés aux adultes peu ou pas scolarisés
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CARTE 3
+            ================================================== -->
+
+            <article class="course-card">
+
+                
+                <div class="course-number">
+                    03
+                </div>
+
+                <h3>
+                    Français <br>Sur Objectif Spécifique
+                </h3>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Cours de français sur mesure
+                    </h4>
+
+                    <p>
+                       Pour répondre à un besoin personnel, mener à bien un projet spécifique
+                    </p>
+
+                </div>
+
+
+                <div class="course-item">
+
+                    <h4>
+                        Quelques exemples :
+                    </h4>
+
+                    <p>
+                        -Demande de cours intensifs <br>
+			-Besoin de maîtriser le français juridique, médical, etc. <br>
+                        -Préparation d’un entretien d’embauche, de rendez-vous administratifs importants <br>
+                        -Besoin de préparation à un examen de niveau (DILF, DELF, DALF, DFP) pour vos études ou votre vie professionnelle <br>
+                        -Besoin de préparation aux tests de niveau en français pour une demande de nationalité, de carte de séjour, pour travailler dans la sécurité privée (TEF IRN)<br>
+                        -Demande de remise à niveau pour maîtriser les courriers administratifs 
+                    </p>
+
+                </div>
+
+
+                
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         APPEL À L'ACTION
+    ====================================================== -->
+
+    <section class="course-cta">
+
+    </section>
+
+
+</body>
+
+</html>
+```

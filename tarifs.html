@@ -1,0 +1,1223 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tarifs — Capycours</title>
+
+
+    <style>
+
+        /* =====================================================
+           COULEURS
+        ===================================================== */
+
+        :root {
+
+            --bleu-fonce: #0b2d63;
+            --bleu: #1769c2;
+            --bleu-clair: #eaf3fc;
+
+            --rouge: #d92828;
+
+            --blanc: #ffffff;
+
+            --gris-clair: #f5f7fa;
+            --gris: #697586;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--bleu-fonce);
+
+            background: var(--blanc);
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 90px;
+
+            background:
+                rgba(255, 255, 255, 0.96);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 3px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+
+        nav a {
+
+            position: relative;
+
+            text-decoration: none;
+
+            color: var(--bleu-fonce);
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            padding: 10px 0;
+
+            transition:
+                color 0.25s ease;
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 3px;
+
+            background: var(--bleu);
+
+            border-radius: 10px;
+
+            transition:
+                width 0.25s ease;
+        }
+
+
+        nav a:hover {
+
+            color: var(--bleu);
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+        }
+
+
+        /* Page actuelle */
+
+        nav .active {
+
+            color: var(--bleu);
+        }
+
+
+        nav .active::after {
+
+            width: 100%;
+        }
+
+
+        /* Bouton contact */
+
+        nav .contact {
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding: 15px 25px;
+
+            border-radius: 7px;
+        }
+
+
+        nav .contact::after {
+
+            display: none;
+        }
+
+
+        nav .contact:hover {
+
+            background: var(--bleu-fonce);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           EN-TÊTE
+        ===================================================== */
+
+        .page-header {
+
+            padding-top: 150px;
+
+            padding-bottom: 65px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #ffffff 70%,
+                    var(--bleu-clair) 100%
+                );
+        }
+
+
+        .page-header::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            background:
+                rgba(217, 40, 40, 0.06);
+
+            border-radius: 50%;
+
+            right: -80px;
+            top: 100px;
+        }
+
+
+        .red-line {
+
+            width: 70px;
+
+            height: 5px;
+
+            background: var(--rouge);
+
+            border-radius: 10px;
+
+            margin:
+                0 auto 25px;
+        }
+
+
+        .page-header h1 {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-size:
+                clamp(45px, 6vw, 75px);
+
+            font-weight: 900;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .page-header h1 span {
+
+            color: var(--bleu);
+        }
+
+
+        .page-header p {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 750px;
+
+            margin: auto;
+
+            padding: 0 20px;
+
+            font-size: 19px;
+
+            line-height: 1.6;
+
+            color: var(--gris);
+        }
+
+
+        /* =====================================================
+           SECTION TARIFS
+        ===================================================== */
+
+        .pricing {
+
+            padding:
+                80px 7% 100px;
+
+            background: var(--gris-clair);
+        }
+
+
+        .pricing-intro {
+
+            text-align: center;
+
+            max-width: 750px;
+
+            margin:
+                0 auto 60px;
+        }
+
+
+        .pricing-intro h2 {
+
+            font-size: 42px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .pricing-intro h2 span {
+
+            color: var(--bleu);
+        }
+
+
+        .pricing-intro p {
+
+            color: var(--gris);
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           GRILLE
+        ===================================================== */
+
+        .pricing-grid {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
+
+            align-items: stretch;
+        }
+
+
+        /* =====================================================
+           CARTE TARIF
+        ===================================================== */
+
+        .price-card {
+
+            position: relative;
+
+            background: white;
+
+            border-radius: 16px;
+
+            padding:
+                40px 32px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(11, 45, 99, 0.07);
+
+            border-top:
+                5px solid var(--bleu);
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+            overflow: hidden;
+        }
+
+
+        .price-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 20px 45px
+                rgba(11, 45, 99, 0.12);
+        }
+
+
+        /* =====================================================
+           LOGO EN HAUT À DROITE
+        ===================================================== */
+
+        .corner-logo {
+
+            position: absolute;
+
+            top: 12px;
+            right: 12px;
+
+            width: 130px;
+            height: 130px;
+
+            object-fit: contain;
+
+            opacity: 0.75;
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           PETIT NUMÉRO
+        ===================================================== */
+
+        .price-number {
+
+            width: 55px;
+
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: var(--bleu-clair);
+
+            color: var(--bleu);
+
+            font-size: 20px;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           TITRE
+        ===================================================== */
+
+        .price-card h3 {
+
+            font-size: 25px;
+
+            line-height: 1.25;
+
+            margin-bottom: 25px;
+
+            padding-right: 15px;
+        }
+
+
+        /* =====================================================
+           INFORMATIONS
+        ===================================================== */
+
+        .price-description {
+
+            color: var(--gris);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+	text-align: justify;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           PRIX
+        ===================================================== */
+
+        .price {
+
+            margin:
+                10px 0 25px;
+
+            padding:
+                20px 0;
+
+            border-top:
+                1px solid #e5e9ef;
+
+            border-bottom:
+                1px solid #e5e9ef;
+
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 8px;
+        }
+
+
+        .price strong {
+
+            font-size: 42px;
+
+            font-weight: 900;
+
+            color: var(--bleu);
+        }
+
+
+        .price span {
+
+            font-size: 15px;
+
+            color: var(--gris);
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           PREMIER COURS GRATUIT
+        ===================================================== */
+
+        .free-course {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            width: fit-content;
+
+            background: #edf8f1;
+
+            color: #18733d;
+
+            padding:
+                9px 14px;
+
+            border-radius: 30px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            margin-bottom: 25px;
+        }
+
+
+        .free-course::before {
+
+            content: "✓";
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 20px;
+            height: 20px;
+
+            background: #2da862;
+
+            color: white;
+
+            border-radius: 50%;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           ENGAGEMENT
+        ===================================================== */
+
+        .commitment {
+
+            margin-top: auto;
+
+            padding-top: 20px;
+
+            color: var(--gris);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        .commitment strong {
+
+            color: var(--bleu-fonce);
+        }
+
+
+        /* =====================================================
+           3e CARTE
+           MÊME APPARENCE QUE LES AUTRES
+        ===================================================== */
+
+        .quote-card {
+
+            background: white;
+
+            color: var(--bleu-fonce);
+
+            border-top:
+                5px solid var(--bleu);
+        }
+
+
+        .quote-card:hover {
+
+            box-shadow:
+                0 20px 45px
+                rgba(11, 45, 99, 0.12);
+        }
+
+
+        .quote-card .price-number {
+
+            background: var(--bleu-clair);
+
+            color: var(--bleu);
+        }
+
+
+        .quote-card h3 {
+
+            color: var(--bleu-fonce);
+        }
+
+
+        .quote-card .price-description {
+
+            color: var(--gris);
+        }
+
+
+        .quote-card .price {
+
+            border-color:
+                #e5e9ef;
+        }
+
+
+        .quote-card .price strong {
+
+            color: var(--bleu);
+
+            font-size: 32px;
+        }
+
+
+        .quote-card .price span {
+
+            color: var(--gris);
+        }
+
+
+        .quote-card .commitment {
+
+            color: var(--gris);
+        }
+
+
+        .quote-card .commitment strong {
+
+            color: var(--bleu-fonce);
+        }
+
+
+        /* =====================================================
+           BOUTON
+        ===================================================== */
+
+        .contact-button {
+
+            display: inline-block;
+
+            width: fit-content;
+
+            margin-top: 25px;
+
+            text-decoration: none;
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding:
+                15px 23px;
+
+            border-radius: 7px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .contact-button:hover {
+
+            background: var(--bleu-fonce);
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           NOTE
+        ===================================================== */
+
+        .pricing-note {
+
+            max-width: 850px;
+
+            margin:
+                50px auto 0;
+
+            text-align: center;
+
+            color: var(--gris);
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           APPEL À L'ACTION
+        ===================================================== */
+
+        .pricing-cta {
+
+            padding:
+                80px 8%;
+
+            text-align: center;
+
+            background: white;
+        }
+
+
+        .pricing-cta h2 {
+
+            font-size:
+                clamp(32px, 5vw, 48px);
+
+            margin-bottom: 20px;
+        }
+
+
+        .pricing-cta h2 span {
+
+            color: var(--bleu);
+        }
+
+
+        .pricing-cta p {
+
+            max-width: 700px;
+
+            margin:
+                0 auto 30px;
+
+            color: var(--gris);
+
+            line-height: 1.7;
+
+            font-size: 17px;
+        }
+
+
+        .cta-button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: var(--bleu);
+
+            color: white;
+
+            padding:
+                16px 28px;
+
+            border-radius: 7px;
+
+            font-weight: 800;
+
+            transition: 0.25s;
+        }
+
+
+        .cta-button:hover {
+
+            background: var(--bleu-fonce);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .pricing-grid {
+
+                grid-template-columns: 1fr;
+
+                max-width: 650px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: auto;
+
+                min-height: 70px;
+
+                padding:
+                    10px 15px;
+            }
+
+
+            nav {
+
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            nav a {
+
+                font-size: 12px;
+            }
+
+
+            nav .contact {
+
+                padding:
+                    9px 12px;
+            }
+
+
+            .page-header {
+
+                padding-top: 130px;
+            }
+
+
+            .pricing {
+
+                padding:
+                    60px 6% 80px;
+            }
+
+
+            .price-card {
+
+                padding:
+                    35px 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         MENU
+    ====================================================== -->
+
+    <header>
+
+        <nav>
+
+            <a href="index.html">
+                Accueil
+            </a>
+
+            
+
+            <a href="cours.html">
+                Cours
+            </a>
+
+            <a href="tarifs.html"
+               class="active">
+                Tarifs
+            </a>
+
+
+	<a href="qui-suis-je.html">
+                Qui suis-je ?
+            </a>
+
+            <a href="contact.html"
+               class="contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         EN-TÊTE
+    ====================================================== -->
+
+    <section class="page-header">
+
+        <div class="red-line"></div>
+
+        <h1>
+            Les <span>tarifs</span>
+        </h1>
+
+        <p>
+
+            Chez CAPYCOURS, le premier cours est gratuit.
+            Cela vous permet de faire connaissance et de connaître votre environnement de travail.
+            On fait le point sur votre niveau et on définit les objectifs d’apprentissage.
+            Puis, vous prenez le temps de la réflexion avant de vous engager.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TARIFS
+    ====================================================== -->
+
+    <section class="pricing">
+
+
+        <div class="pricing-intro">
+
+            <h2>
+
+                <span>Les Formules proposées :</span>
+
+            </h2>
+
+        </div>
+
+
+
+        <div class="pricing-grid">
+
+
+            <!-- =================================================
+                 FRANÇAIS LANGUE MATERNELLE
+            ================================================== -->
+
+            <article class="price-card">
+
+
+                <div class="price-number">
+                    01
+                </div>
+
+
+                <h3>
+                    Français<br>
+                    Soutien scolaire
+                </h3>
+
+
+                <p class="price-description">
+
+                    <br><br>
+
+                    Séance de <strong>50 minutes</strong>,
+                    en groupe de <strong>2 personnes</strong>.
+
+                </p>
+
+
+                <div class="price">
+
+                    <strong>
+                        30 €
+                    </strong>
+
+                    <span>
+                        / personne
+                    </span>
+
+                </div>
+
+
+                <div class="free-course">
+
+                    1er cours gratuit
+
+                </div>
+
+
+                <p class="commitment">
+
+                    Engagement pour
+                    <strong>
+                        5 séances programmées
+                    </strong>
+                    payables d'avance.
+
+                    <br><br>
+
+                    Soit
+                    <strong>
+                        150 € / personne
+                    </strong>
+                    pour les 5 séances.
+
+                </p>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FRANÇAIS LANGUE ÉTRANGÈRE
+            ================================================== -->
+
+            <article class="price-card">
+
+               
+
+                <div class="price-number">
+                    02
+                </div>
+
+
+                <h3>
+                    Français <br>
+                    Langue Étrangère
+                </h3>
+
+
+                <p class="price-description">
+
+                    <br><br>
+
+                    Séance de <strong>50 minutes</strong>,
+                    en groupe de <strong>3 personnes</strong>.
+
+                </p>
+
+
+                <div class="price">
+
+                    <strong>
+                        30 €
+                    </strong>
+
+                    <span>
+                        / personne
+                    </span>
+
+                </div>
+
+
+                <div class="free-course">
+
+                    1er cours gratuit
+
+                </div>
+
+
+                <p class="commitment">
+
+                    Engagement pour
+                    <strong>
+                        5 séances programmées
+                    </strong>
+                    payables d'avance.
+
+                    <br><br>
+
+                    Soit
+                    <strong>
+                        150 € / personne
+                    </strong>
+                    pour les 5 séances.
+
+                </p>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 OBJECTIF SPÉCIFIQUE
+            ================================================== -->
+
+            <article class="price-card">
+
+            
+
+                <div class="price-number">
+                    03
+                </div>
+
+
+                <h3>
+                    Français<br>
+                    Sur Objectif Spécifique 
+                </h3>
+
+
+                <p class="price-description">
+
+                    Le format et le contenu des séances sont définis selon votre situation
+
+                    <br><br>
+
+                    Formule adaptée à votre projet. <br> Devis personnalisé suite au premier échange.
+
+                </p>
+
+
+                <div class="price">
+
+                    <strong>
+                        Sur devis
+                    </strong>
+
+                </div>
+
+
+                <a
+                    href="contact.html"
+                    class="contact-button">
+
+                    ME CONTACTER
+
+                </a>
+
+            </article>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         APPEL À L'ACTION
+    ====================================================== -->
+
+    <section class="pricing-cta">
+
+    </section>
+
+
+</body>
+
+</html>
+```
